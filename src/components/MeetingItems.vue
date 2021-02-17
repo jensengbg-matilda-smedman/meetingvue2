@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="meetDiv">
+    <div class="meetDiv" @click="goTo(meeting.id)">
       <h3>{{ meeting.Title }}</h3>
       <h3>{{ meeting.When }}</h3>
     </div>
@@ -12,6 +12,11 @@ export default {
   props: {
     meeting: Object,
   },
+  methods: {
+    goTo(id) {
+      this.$router.push(`/Meeting/${id}`)
+    }
+  }
 };
 </script>
 

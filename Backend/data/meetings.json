@@ -4,25 +4,29 @@
       "id": 1,
       "Title": "Coffee date",
       "When": "2 jan",
-      "Where": "Skövde"
+      "Where": "Skövde",
+      "Desc": "Love coffee? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam minus sit, consequuntur, recusandae laudantium maiores totam culpa, sunt ut ipsa harum expedita nobis aliquid nulla omnis quo dolor ab. Molestiae."
     },
     {
       "id": 2,
       "Title": "Study date",
       "When": "every Monday",
-      "Where": "Tibro"
+      "Where": "Tibro",
+      "Desc": "Need to focus? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam minus sit, consequuntur, recusandae laudantium maiores totam culpa, sunt ut ipsa harum expedita nobis aliquid nulla omnis quo dolor ab. Molestiae."
     },
     {
       "id": 3,
       "Title": "Wedding",
       "When": "13 Jun",
-      "Where": "Hjo"
+      "Where": "Hjo",
+      "Desc": "Love love? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam minus sit, consequuntur, recusandae laudantium maiores totam culpa, sunt ut ipsa harum expedita nobis aliquid nulla omnis quo dolor ab. Molestiae."
     },
     {
       "id": 4,
       "Title": "Fiesta",
       "When": "6 May",
-      "Where": "Örebro"
+      "Where": "Örebro",
+      "Desc": "Miss drinking with new friends? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam minus sit, consequuntur, recusandae laudantium maiores totam culpa, sunt ut ipsa harum expedita nobis aliquid nulla omnis quo dolor ab. Molestiae."
     }
   ]
 }

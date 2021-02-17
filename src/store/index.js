@@ -7,11 +7,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     apiUrl: 'http://localhost:3000',
-    meeting: Array,
+    meetings: Array,
   },
   mutations: {
     displayMeeting(state, data) {
-      state.meeting = data
+      state.meetings = data
     }
   },
   actions: {

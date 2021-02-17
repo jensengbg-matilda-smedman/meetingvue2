@@ -9,7 +9,6 @@ describe('MeetingItems.vue', () => {
         const localVue = createLocalVue()
         localVue.use(Vuex)
         const store = new Vuex.Store(Index)
-        console.log(store.state.meeting)
 
         const wrapper = shallowMount(MeetingItems, {
             propsData: {
@@ -21,7 +20,7 @@ describe('MeetingItems.vue', () => {
             store
         });
 
-        let meetingExist = wrapper.findAll('.meeting').exists()
+        let meetingExist = wrapper.findAll('.meetDiv').exists()
         expect(meetingExist).toBeTruthy();
     })
 })
