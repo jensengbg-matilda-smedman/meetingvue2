@@ -1,1 +1,1 @@
-web: npm start ; npm json:server
+web: npm json:server; npm start
