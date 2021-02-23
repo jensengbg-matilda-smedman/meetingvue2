@@ -26,9 +26,6 @@
 import MeetingItems from "../components/MeetingItems";
 export default {
   name: "Home",
-  props: {
-    meetings: Array,
-  },
   components: {
     MeetingItems,
   },
@@ -41,20 +38,27 @@ export default {
   methods: {
     filter() {
       if (
-        this.search == "undefined" ||
-        this.search == null ||
+        this.search === undefined ||
+        this.search === null ||
         this.search == ""
       ) {
-        this.filteredList = this.meetings;
+        this.filteredList = this.$store.state.meetings;
+        console.log(this.filteredList[0], 'index0')
       } else {
-        this.filteredList = this.meetings.filter((meeting) => {
+        this.filteredList = this.$store.state.meetings.filter((meeting) => {
           return meeting.Title.toLowerCase().includes(this.search.toLowerCase());
         });
       }
     },
   },
+  computed: {
+    allMeetings() {
+      return this.$store.state.meetings
+      }
+  },
   beforeMount() {
     this.filter();
+    console.log('hej filter')
   },
 };
 </script>

@@ -17,7 +17,7 @@ export default {
       }
     },
     beforeMount() {
-      return this.$store.dispatch("fetchBackend")
+      this.$store.dispatch("fetchBackend")
   }
 }
 </script>

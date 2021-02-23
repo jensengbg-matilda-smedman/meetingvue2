@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <section>
+    <section v-show="isShowing">
       <h2>sign up for meeting?</h2>
       <label for="email" >Email: </label>
       <input type="text" v-model="inputValue.email">
@@ -8,6 +8,12 @@
       <input type="text" v-model="inputValue.username">
       <button :disabled='isDisabled' @click="submit">Join meeting!</button>
     </section>
+
+    <section v-show="welcome" class="thanks">
+      <h2>Thanks for signing up for this meetup!</h2>
+      <p>Don´t forget to give the meetup a review if you liked it!</p>
+    </section>
+
   </footer>
 </template>
 
@@ -16,6 +22,8 @@ export default {
     name: "SignUp",
     data() {
       return {
+        isShowing:true,
+        welcome: false,
         disabled: true,
         inputValue: {
         email: "",
@@ -30,8 +38,9 @@ export default {
         email: this.inputValue.email
       }
       this.$store.dispatch('postUser', data, 'data front')
+      this.isShowing = false
+      this.welcome = true
       console.log(data)
-      this.$router.push(`/Thanks`)
     }
   },
   computed: {

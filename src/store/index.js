@@ -8,7 +8,10 @@ export default new Vuex.Store({
   state: {
     apiUrl: "https://api.jsonbin.io/v3/b/60351265f1be644b0a63b5c8",
     apiKey: "$2b$10$yQ6glU4Q8glUPN2YpQqv.Ojv313PPzdUFBxhOu7efzKMFWxohmbG.",
-    meetings: Array,
+    meetings: {
+      type: Array,
+      default: []
+    },
     users: {}
   },
   mutations: {
@@ -20,7 +23,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async fetchBackend(ctx) {
+    fetchBackend(ctx) {
       let options = {
         headers: {
           "Content-Type": "application/json",
@@ -28,9 +31,12 @@ export default new Vuex.Store({
           "X-Bin-Versioning": "false"
         }
       }
-      let data = await ax.get(`${ctx.state.apiUrl}`, options)
-      ctx.commit('displayMeeting', data.data.record.meeting)
+      ax.get(`${ctx.state.apiUrl}`, options).then( data => {
+        ctx.commit('displayMeeting', data.data.record.meetings)
+        console.log(data.data.record.meetings, 'data record')
+      }) 
     },
+    
 
     async postUser(ctx, value) {
       let options = {
