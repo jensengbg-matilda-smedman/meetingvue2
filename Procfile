@@ -1,1 +1,1 @@
-web: npm run json:server && npm run serve
+web: npm run json:server; npm run serve
