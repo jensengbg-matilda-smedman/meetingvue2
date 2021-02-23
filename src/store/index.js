@@ -22,6 +22,7 @@ export default new Vuex.Store({
     async fetchBackend(ctx) {
       let data = await ax.get(`${ctx.state.apiUrl}/meeting`)
       ctx.commit('displayMeeting', data.data)
+      console.log(process.env.PORT, 'port')
     },
 
     async postUser(ctx, value) {
