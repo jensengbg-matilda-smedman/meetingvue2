@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "json:server": "json-server --watch ./Backend/data/meetings.json --port 8000",
+    "json:server": "json-server --watch ./Backend/data/meetings.json --port 4000",
     "start": "http-server /app/dist/",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

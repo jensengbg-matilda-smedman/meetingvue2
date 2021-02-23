@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    apiUrl: process.env.PORT || 'http://localhost:8000',
+    apiUrl: process.env.PORT || 'http://localhost:4000',
     meetings: Array,
     users: {}
   },
