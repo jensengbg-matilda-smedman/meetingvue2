@@ -1,1 +1,1 @@
-web: npm run json:server
+web: node npm run json:server
