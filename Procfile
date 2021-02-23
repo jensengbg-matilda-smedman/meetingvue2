@@ -1,1 +1,1 @@
-web: node ./Backend/data/meetings.json ; npm run serve
+web: node Backend/data/meetings.json ; npm run serve
