@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    apiUrl: process.env.PORT || 'http://localhost:4000',
+    apiUrl: "https://api.jsonbin.io/v3/b/60351265f1be644b0a63b5c8",
+    apiKey: "$2b$10$yQ6glU4Q8glUPN2YpQqv.Ojv313PPzdUFBxhOu7efzKMFWxohmbG.",
     meetings: Array,
     users: {}
   },
@@ -20,21 +21,29 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchBackend(ctx) {
-      let data = await ax.get(`${ctx.state.apiUrl}/meeting`)
-      ctx.commit('displayMeeting', data.data)
-      console.log(process.env.PORT, 'port')
+      let options = {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": ctx.state.apiKey, 
+          "X-Bin-Versioning": "false"
+        }
+      }
+      let data = await ax.get(`${ctx.state.apiUrl}`, options)
+      ctx.commit('displayMeeting', data.data.record.meeting)
     },
 
     async postUser(ctx, value) {
       let options = {
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json"
+          "X-Master-Key": ctx.state.apiKey, 
+          "X-Bin-Versioning": "false"
         }
       }
       console.log(value, 'this is value')
       try {
-        let data = await ax.post(`${ctx.state.apiUrl}/users`, {
+        let data = await ax.put(`${ctx.state.apiUrl}`, {
+          meetings: ctx.state.meetings,
           user: value,
         }, options)
         console.log('data', data)
