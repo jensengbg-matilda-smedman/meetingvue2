@@ -31,4 +31,7 @@ export default {
   float: left;
   color: #3d2f27;
 }
+  .meetDiv:hover {
+    cursor: pointer;
+  }
 </style>

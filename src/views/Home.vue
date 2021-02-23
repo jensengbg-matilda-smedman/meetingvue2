@@ -10,7 +10,7 @@
         />
       </div>
       <div v-if="!filteredList || !filteredList.length">
-        <h2 style="color: red">No events matching your search</h2>
+        <h2 class="error">No events matching your search</h2>
       </div>
       <div v-else>
         <MeetingItems
@@ -65,5 +65,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+input {
+  padding: 1rem;
+  border-radius: 3px;
+  border: rgba(75, 68, 68, 0.397) solid 1px;
+}
+
+.error {
+  color: red;
+  text-align: center;
 }
 </style>
