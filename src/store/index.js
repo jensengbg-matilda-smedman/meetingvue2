@@ -65,6 +65,16 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    pickedMeeting(state) {
+      return(meetID) => {
+        if(state.meetings.find) {
+          let meetPicked = state.meetings.find((meeting) => meeting.id == meetID)
+          return meetPicked
+        } else {
+          return {}
+        }
+      }
+    },
     filteredList(ctx) {
       if (
         ctx.filter.search == "" ||

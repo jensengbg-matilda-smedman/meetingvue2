@@ -1,29 +1,30 @@
-import { shallowMount } from "@vue/test-utils";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
 import Home from '@/views/Home.vue'
+import Vuex from 'vuex'
 
 describe('MeetingItems.vue', () => {
-    it('Should search after input in inputfield', () => {
-        const filter = jest.spyOn(Home.methods, 'filter');
-        const allMeetings = [
-            {
-                "id": 1,
-                "Title": "Coffee date"
-            },
-            {
-                "id": 2,
-                "Title": "Study date"
-            }
-        ]
+    it('Should show meetings that matches the input search', ( )=> {
+        const filter = jest.spyOn(Home.methods, 'filter')
+        const localVue = createLocalVue()
+        localVue.use(Vuex)
+        const actions = { filterMeetings: jest.fn() }
+        const store = new Vuex.Store({ actions })
         const wrapper = shallowMount(Home, {
             propsData: {
-                meetings: allMeetings
-            }
+                meetings: [
+                    {
+                        "id": 1,
+                        "when": "Coffee meetup"
+                    }
+                ]
+            },
+            localVue,
+            store
         })
-        const searchInput = wrapper.find('input');
-        searchInput.setValue('Coff');
-        searchInput.trigger('input');
-        expect(filter).toHaveBeenCalled;
-        expect(wrapper.vm.$data.filteredList.length).toBe(1);
+        const inputField = wrapper.find('input')
+        inputField.setValue('Coff')
+        expect(filter).toBeCalled()
+        expect(inputField.element.value).toBe('Coff')
     })
 })
 

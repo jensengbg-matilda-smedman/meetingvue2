@@ -3,17 +3,17 @@
     <article class="meeting">
       <div class="left">
         <h2>Selected meeting:</h2>
-        <h3>{{ meetingInfo.Title }}</h3>
-        <p>{{ meetingInfo.Desc }}</p>
+        <h3>{{ meeting.Title || 'Title unavailabe' }}</h3>
+        <p>{{ meeting.Desc || 'No description available'}}</p>
       </div>
       <aside class="aside">
-        <h4>When? {{ meetingInfo.When }}!</h4>
-        <img :src="meetingInfo.img" alt="no img avb" />
+        <h4>When? {{ meeting.When || 'Ne meeting time'}}!</h4>
+        <img :src="meeting.img" alt="no img avb" />
       </aside>
     </article>
-    <SignUp :review="meetingInfo" />
-    <h2>Reviews:</h2>
-    <Reviwes v-for="review of meetingInfo.review" :key="review.review" :review="review" />
+    <SignUp :review="meeting" />
+    <h2 class="rev">Reviews:</h2>
+    <Reviwes v-for="review of meeting.reviews" :key="review.review" :review="review" />
   </div>
 </template>
 
@@ -21,32 +21,15 @@
 import SignUp from "../components/SignUp";
 import Reviwes from "../components/Reviews";
 export default {
-  props: {
-    meetings: Array,
-  },
   components: {
     SignUp, Reviwes
   },
   computed: {
-    meetingInfo() {
-      let pickedMeeting = {
-        Title: this.infoChosen ? this.infoChosen.Title : "Title unavailabe",
-        Desc: this.infoChosen ? this.infoChosen.Desc : "No description available",
-        img: this.infoChosen ? this.infoChosen.img : "No img avb",
-        When: this.infoChosen ? this.infoChosen.When : "No time for meet",
-        review: this.infoChosen ? this.infoChosen.reviews : "No reviews been done yet"
-      };
-      return pickedMeeting;
-    },
-    infoChosen() {
-      if (this.$route !== undefined) {
-        return this.meetings.find((m) => m.id == this.$route.params.id);
-      } else {
-        return null;
-      }
-    },
-  },
-};
+    meeting() {
+      return this.$store.getters.pickedMeeting(this.$route.params.id)
+    }
+  }   
+}
 </script>
 
 <style scoped>
@@ -66,7 +49,7 @@ img {
 }
 .aside,
 .left,
-h2 {
+.rev {
   display: flex;
   flex-direction: column;
   margin: 2rem;

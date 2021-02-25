@@ -3,19 +3,19 @@
     <section v-show="isShowing">
       <h2>sign up for meeting?</h2>
       <label for="email">Email: </label>
-      <input type="text" v-model="inputValue.email" />
+      <input type="text" class="emailInput" v-model="inputValue.email" />
       <label for="name">Name: </label>
-      <input type="text" v-model="inputValue.username" />
-      <button :disabled="isDisabled" @click="submit">Join meeting!</button>
+      <input type="text" class="userInput" v-model="inputValue.username" />
+      <button class="submitBtn" :disabled="isDisabled" @click="submit">Join meeting!</button>
     </section>
 
     <section v-show="welcome" class="thanks">
-      <h2>Thanks for signing up for this meetup!</h2>
+      <h2 class="thanksH">Thanks for signing up for this meetup!</h2>
       <p>Don´t forget to give the meetup a review if you liked it!</p>
       <h2>Please write a review:</h2>
       <textarea name="" id="" cols="50" rows="10" v-model="inputValue.review">
       </textarea>
-      <button @click="send">Send!</button>
+      <button class="sendbtn" @click="send">Send!</button>
       <h2 v-show="thanks">Thanks for your feedback!</h2>
     </section>
   </footer>
@@ -48,12 +48,11 @@ export default {
     send() {
       this.thanks = true;
       if (this.inputValue.review >= 0) {
-        alert("Canno´t send in empty review");
-        console.log(this.inputValue.review, "from send");
+        alert("Cannot send in empty review");
       } else {
-        let newComment = this.review.review;
+        let newComment = this.review.reviews;
         newComment.push(this.inputValue);
-        //this.$store.dispatch("postReview", newComment);
+        this.$store.dispatch("postReview", newComment);
         this.clearTextbox();
       }
     },
@@ -104,5 +103,8 @@ button {
 }
 button:hover {
   cursor: pointer;
+}
+.sendbtn {
+  margin: 1rem;
 }
 </style>

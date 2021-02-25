@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <p> From: {{ review.email }} </p>
-    <p> {{ review.review }} </p>
+  <div class="revDiv">
+    <p class="revMail"> From: {{ review.email }} </p>
+    <p class="revRev"> {{ review.review }} </p>
   </div>
 </template>
 
@@ -15,12 +15,13 @@ export default {
 </script>
 
 <style scoped>
-    div {
+    .revDiv {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin: 2rem;
     border: rgba(58, 55, 55, 0.521) solid 0.7px;
     padding: 1rem;
+    max-width: 50%;
   }
 </style>
