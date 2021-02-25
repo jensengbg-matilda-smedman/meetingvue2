@@ -45,7 +45,7 @@ export default new Vuex.Store({
       ctx.dispatch['filteredList']
     },
 
-    async postReview(ctx, value) {
+    async postReview(ctx) {
       let options = {
         headers: {
           "Content-Type": "application/json",
@@ -55,8 +55,7 @@ export default new Vuex.Store({
       }
       try {
         let data = await ax.put(`${ctx.state.apiUrl}`, {
-          meetings: ctx.state.meetings,
-          review: value,
+          meetings: ctx.state.meetings
         }, options)
         ctx.commit('displayMeeting', data.data.record.meetings)
       } catch (error) {
