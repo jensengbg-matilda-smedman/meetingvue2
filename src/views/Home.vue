@@ -2,22 +2,13 @@
     <div class="home">
       <div class="searchDiv">
         <h2>Meetings</h2>
-        <input
-          type="text"
-          placeholder="Search..."
-          v-model="search"
-          @input="filter()"
-        />
+        <input type="text" placeholder="Search..." v-model="search" @input="filter()" />
       </div>
       <div v-if="!filteredList || !filteredList.length">
         <h2 class="error">No events matching your search</h2>
       </div>
       <div v-else>
-        <MeetingItems
-          v-for="meeting in filteredList"
-          :key="meeting.id"
-          :meeting="meeting"
-        />
+        <MeetingItems v-for="meeting in filteredList" :key="meeting.id" :meeting="meeting" />
       </div>
     </div>
 </template>
@@ -29,37 +20,19 @@ export default {
   components: {
     MeetingItems,
   },
-  data() {
-    return {
-      search: "",
-      filteredList: Array,
-    };
-  },
+  data: () => ({
+    search: ''
+  }),
   methods: {
     filter() {
-      if (
-        this.search === undefined ||
-        this.search === null ||
-        this.search == ""
-      ) {
-        this.filteredList = this.$store.state.meetings;
-        console.log(this.filteredList[0], 'index0')
-      } else {
-        this.filteredList = this.$store.state.meetings.filter((meeting) => {
-          return meeting.Title.toLowerCase().includes(this.search.toLowerCase());
-        });
-      }
-    },
+      this.$store.dispatch('filterMeetings',  this.search)
+    }
   },
   computed: {
-    allMeetings() {
-      return this.$store.state.meetings
-      }
-  },
-  beforeMount() {
-    this.filter();
-    console.log('hej filter')
-  },
+    filteredList() {
+      return this.$store.getters['filteredList']
+    }
+  }
 };
 </script>
 <style scoped>

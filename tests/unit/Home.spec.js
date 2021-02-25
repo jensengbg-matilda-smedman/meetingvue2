@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount } from "@vue/test-utils";
 import Home from '@/views/Home.vue'
 
 describe('MeetingItems.vue', () => {
@@ -26,3 +26,5 @@ describe('MeetingItems.vue', () => {
         expect(wrapper.vm.$data.filteredList.length).toBe(1);
     })
 })
+
+

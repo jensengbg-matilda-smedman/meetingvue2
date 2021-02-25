@@ -11,31 +11,30 @@
         <img :src="meetingInfo.img" alt="no img avb" />
       </aside>
     </article>
-    <section>
-      <h5>People already signed up for meeting: {{ meetingInfo.Going }}</h5>
-    </section>
-    <SignUp />
+    <SignUp :review="meetingInfo" />
+    <h2>Reviews:</h2>
+    <Reviwes v-for="review of meetingInfo.review" :key="review.review" :review="review" />
   </div>
 </template>
 
 <script>
 import SignUp from "../components/SignUp";
+import Reviwes from "../components/Reviews";
 export default {
   props: {
     meetings: Array,
   },
   components: {
-    SignUp,
+    SignUp, Reviwes
   },
   computed: {
     meetingInfo() {
       let pickedMeeting = {
-        Title: this.infoChosen ? this.infoChosen.Title : "Error",
-        Desc: this.infoChosen
-          ? this.infoChosen.Desc
-          : "No description available",
+        Title: this.infoChosen ? this.infoChosen.Title : "Title unavailabe",
+        Desc: this.infoChosen ? this.infoChosen.Desc : "No description available",
         img: this.infoChosen ? this.infoChosen.img : "No img avb",
         When: this.infoChosen ? this.infoChosen.When : "No time for meet",
+        review: this.infoChosen ? this.infoChosen.reviews : "No reviews been done yet"
       };
       return pickedMeeting;
     },
@@ -53,6 +52,7 @@ export default {
 <style scoped>
 .meet {
     margin-bottom: 3rem;
+    margin: 2rem;
 }
 .meeting {
   height: 100%;
@@ -65,7 +65,8 @@ img {
   max-width: 70%;
 }
 .aside,
-.left {
+.left,
+h2 {
   display: flex;
   flex-direction: column;
   margin: 2rem;

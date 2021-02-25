@@ -6,20 +6,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    apiUrl: "https://api.jsonbin.io/v3/b/60351265f1be644b0a63b5c8",
-    apiKey: "$2b$10$yQ6glU4Q8glUPN2YpQqv.Ojv313PPzdUFBxhOu7efzKMFWxohmbG.",
+    apiUrl: "https://api.jsonbin.io/v3/b/6037701eab68b51aec23b15e",
+    apiKey: "$2b$10$0lryr/4OVOiE4MvsaSOfZOnaZLAdC8IIK3dQDqavbix3OxzbvLihG",
     meetings: {
       type: Array,
-      default: []
+      default: [],
     },
-    users: {}
+    filteredMeetings: Array,
+      filter: {
+        search: ''
+      }
   },
   mutations: {
     displayMeeting(state, data) {
       state.meetings = data
     },
-    setGoing(state, going) {
-      state.going = going
+    setFilter(state, data) {
+      state.filteredMeetings = data
+      state.filter.search = data
     }
   },
   actions: {
@@ -27,37 +31,53 @@ export default new Vuex.Store({
       let options = {
         headers: {
           "Content-Type": "application/json",
-          "X-Master-Key": ctx.state.apiKey, 
+          "X-Master-Key": ctx.state.apiKey,
           "X-Bin-Versioning": "false"
         }
       }
-      ax.get(`${ctx.state.apiUrl}`, options).then( data => {
+      ax.get(`${ctx.state.apiUrl}`, options).then(data => {
         ctx.commit('displayMeeting', data.data.record.meetings)
-        console.log(data.data.record.meetings, 'data record')
-      }) 
+      })
     },
-    
 
-    async postUser(ctx, value) {
+    async filterMeetings(ctx, search) {
+      await ctx.commit('setFilter', search)
+      ctx.dispatch['filteredList']
+    },
+
+    async postReview(ctx, value) {
       let options = {
         headers: {
           "Content-Type": "application/json",
-          "X-Master-Key": ctx.state.apiKey, 
+          "X-Master-Key": ctx.state.apiKey,
           "X-Bin-Versioning": "false"
         }
       }
-      console.log(value, 'this is value')
       try {
         let data = await ax.put(`${ctx.state.apiUrl}`, {
           meetings: ctx.state.meetings,
-          user: value,
+          review: value,
         }, options)
-        console.log('data', data)
+        ctx.commit('displayMeeting', data.data.record.meetings)
       } catch (error) {
-        console.log(error)
+        console.log(error, 'submit not possible')
       }
     }
   },
-    modules: {
+  getters: {
+    filteredList(ctx) {
+      if (
+        ctx.filter.search == "" ||
+        ctx.filter.search === undefined ||
+        ctx.filter.search === null
+        ) {
+        ctx.filteredMeetings = ctx.meetings
+      } else {
+        ctx.filteredMeetings = ctx.meetings.filter((meeting) => {
+          return meeting.Title.toLowerCase().includes(ctx.filter.search.toLowerCase());
+        })
+      }
+      return ctx.filteredMeetings
     }
-  })
+  }
+})
