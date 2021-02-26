@@ -19,7 +19,7 @@ export default {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 2rem;
+    margin-top: 1rem;
     border: rgba(58, 55, 55, 0.521) solid 0.7px;
     padding: 1rem;
     max-width: 50%;

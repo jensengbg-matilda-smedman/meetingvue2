@@ -1,7 +1,7 @@
 <template>
     <div class="home">
       <div class="searchDiv">
-        <h2>Meetings</h2>
+        <h1>Meetings</h1>
         <input type="text" placeholder="Search..." v-model="search" @input="filter()" />
       </div>
       <div v-if="!filteredList || !filteredList.length">
@@ -36,6 +36,9 @@ export default {
 };
 </script>
 <style scoped>
+h1 {
+  color: #cc4e01;
+}
 .searchDiv {
   margin: auto 0;
   display: flex;

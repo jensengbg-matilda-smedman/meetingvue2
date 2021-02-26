@@ -25,7 +25,7 @@ export default {
   margin: 15px;
   padding: 1rem;
   border: 1px solid rgba(15, 15, 15, 0.329);
-  background-color: #c9c9c750;
+  background-color: #ffb35698;
   box-shadow: 0 0 7px rgba(43, 41, 41, 0.623);
   width: 240px;
   float: left;

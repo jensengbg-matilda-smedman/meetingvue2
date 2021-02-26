@@ -35,24 +35,32 @@ export default {
 <style scoped>
 .meet {
     margin-bottom: 3rem;
-    margin: 2rem;
+    margin-left: 2rem;
+}
+h2 {
+  color: #cc4e01;
 }
 .meeting {
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 img {
-  max-height: 70%;
-  max-width: 70%;
+  max-height: 60%;
+  max-width: 60%;
 }
 .aside,
 .left,
 .rev {
   display: flex;
   flex-direction: column;
-  margin: 2rem;
+}
+.aside {
+  align-items: center;
+}
+.left {
+  max-width: 50%;
+  margin-right: 1rem;
 }
 section {
     margin: 2rem;

@@ -84,10 +84,9 @@ footer {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 2rem;
 }
 h2 {
-  color: green;
+  color: #cc4e01;
 }
 input {
   padding: 0.5rem;
@@ -105,6 +104,13 @@ button:hover {
   cursor: pointer;
 }
 .sendbtn {
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-left: 0;
+  max-width: 30%;
+}
+.thanks {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
 }
 </style>

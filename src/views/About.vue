@@ -14,4 +14,10 @@
   display: flex;
   flex-direction: column;
 }
+h1 {
+  color: #cc4e01;
+}
+h3 {
+  color: #fe8f2b;
+}
 </style>
