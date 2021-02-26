@@ -6,8 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    apiUrl: "https://api.jsonbin.io/v3/b/6037701eab68b51aec23b15e",
-    apiKey: "$2b$10$0lryr/4OVOiE4MvsaSOfZOnaZLAdC8IIK3dQDqavbix3OxzbvLihG",
+    apiUrl: "https://api.jsonbin.io/v3/b/6038cdcd81087a6a8b914224",
+    apiKey: "$2b$10$qySlSeF350lIVqt.TubiA.VB.1whJMisVyUfyoS7Q9tPeeUBs/XMC",
     meetings: {
       type: Array,
       default: [],

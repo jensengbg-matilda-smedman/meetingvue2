@@ -26,6 +26,9 @@ export default {
   },
   computed: {
     meeting() {
+      console.log('getters', this.$store.getters)
+      if(!this.$store.getters.pickedMeeting)
+        return {}
       return this.$store.getters.pickedMeeting(this.$route.params.id)
     }
   }   

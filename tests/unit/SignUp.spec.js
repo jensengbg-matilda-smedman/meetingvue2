@@ -23,23 +23,4 @@ describe('signup.vue', () => {
         expect(userInput.length).toBe(undefined)
         expect(submit).toBeCalledTimes(0)
     })
-/*
-    it('Should show "thanks for signing up" when "join meeting" is clicked', async () => {
-        const submit = jest.spyOn(SignUp.methods, 'submit')
-        const wrapper = shallowMount(SignUp, {
-            propsData: {
-                meeting: {
-                    id: 1
-                }
-            },
-        })
-
-        let submitBtn = wrapper.find('.submitBtn')
-        //submitBtn.setValue(false)
-        
-        await submitBtn.trigger('click')
-        expect(submit).toHaveBeenCalled()
-        const displayThanks = wrapper.find('.thanksH')
-        expect(displayThanks).toBeTruthy()
-    }) */
 })
